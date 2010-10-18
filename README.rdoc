@@ -4,8 +4,8 @@ FaceboxRender improved plugin let you use lightbox seamlessly using Facebox libr
 
 = Install
 
-* script/plugin install git://github.com/ihower/facebox_render.git (for Rails 2)
-* rails plugin install git://github.com/ihower/facebox_render.git (for Rails 3)
+* script/plugin install git://github.com/xenda/toybox.git (for Rails 2)
+* rails plugin install git://github.com/xenda/toybox.git (for Rails 3)
 
 = USAGE
 

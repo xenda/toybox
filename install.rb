@@ -1,6 +1,7 @@
 require 'rubygems'
 
-puts 'Copying files...'
+puts "Installing ToyBox"
+puts 'ToyBox (based on facebox_render) will need to copy jQuery, Facebox and other files to your public folder'
 
 public_path = File.join(Rails.root, 'public')
 current_path = File.join(File.dirname(__FILE__), 'media') 
@@ -10,16 +11,20 @@ stylesheets_path = File.join(public_path, 'stylesheets')
 images_path      = File.join(public_path, 'images', 'facebox')
 
 # copying JS
+puts "Copying Javascript files"
 ['facebox.js', 'facebox.pack.js'].each do |js_file|
   dest_file = File.join(javascripts_path, js_file)
   src_file  = File.join(current_path, 'javascripts', js_file)
   FileUtils.cp_r(src_file, dest_file)
+  print "."
 end
 
 # copying CSS
+puts "Copying CSS files"
 FileUtils.cp_r(File.join(current_path, 'stylesheets', 'facebox.css'), File.join(stylesheets_path, 'facebox.css'))
 
 # copying images
+puts "Copying image files"
 Dir.mkdir(images_path) unless File.exists?(images_path) 
 
 plugin_images_path = File.join(current_path, 'images')
@@ -30,6 +35,7 @@ Dir.foreach(plugin_images_path) do |image|
   if File.file?(src_image)
     dest_image = File.join(images_path, image)
     FileUtils.cp_r(src_image, dest_image)
+    print "."
   end
 end
 

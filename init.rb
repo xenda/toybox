@@ -1,1 +1,1 @@
-ActionController::Base.helper FaceboxRenderHelper
+require 'toybox'

@@ -18,6 +18,7 @@ puts "Copying Javascript files"
   FileUtils.cp_r(src_file, dest_file)
   print "."
 end
+puts
 
 # copying CSS
 puts "Copying CSS files"
@@ -38,5 +39,6 @@ Dir.foreach(plugin_images_path) do |image|
     print "."
   end
 end
+puts
 
 puts 'Done - Installation complete!'

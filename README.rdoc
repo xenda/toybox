@@ -1,6 +1,10 @@
 = Description
 
-FaceboxRender improved plugin let you use lightbox seamlessly using Facebox library.
+Toybox plugin let you use lightbox seamlessly using the Facebox library. The pages
+loaded through it will maintain their status through a specific token and automatically
+return a "pop-in" layout.
+
+Based on the great work accomplished by facebox_render
 
 = Install
 
@@ -9,9 +13,18 @@ FaceboxRender improved plugin let you use lightbox seamlessly using Facebox libr
 
 = USAGE
 
+There are two ways of using Toybox. The first one, inherited from facebox_render,
+will let you use helpers and respond actions to redirect the way your facebox content
+works. 
+
+The other one, by using the link_to_box helper, will set up a dialog token that will 
+go along your links and help us deduct whether you are inside a box (and need a special layout)
+or just a regular content. It's our recommended way since it just works. You'd need only to
+redefine a layout option. 
+
 == Helper
 
-* facebox_link_to helper, it's will launch loading facebox first, send ajax request second)
+* link_to_box helper, it's will launch loading facebox first, send ajax request second)
 * link_to_remote, form_remote_tag ...etc Ajax helper. (for Rails 2)
 * link_to :remote => true, form_for :remote => true ...etc Ajax helper (for Rails 3)
 
@@ -19,14 +32,11 @@ Don't use <a href="somelink" ref="facebox">
 
 == Controller
   
-Add "include FaceboxRender" to your controller, 
-or simply put it at /app/controllers/application.rb
-
-Then in your action:
+ In your action:
 
   respond_to do |format|
     format.html
-    format.js { render_to_facebox }
+    format.js { render_to_box }
   end
 
 By Default render the html without layout,
@@ -35,19 +45,22 @@ Passing options[:msg] will pulsate a message.
 
 If block given, it will yield after facebox script, eg:
   
-  render_to_facebox do |page|
+  render_to_box do |page|
     page << "alert('test')"
   end
 
-Besides render_facebox, we have close_facebox, redirect_from_facebox.
+Besides render_to_box, we have close_box, redirect_from_box.
 
   respond_to do |format|
     format.html
-    format.js { close_facebox }
+    format.js { close_box }
   end
 
 = Authors & Contributors
 
+* Alvaro Pereyra (Xenda) http://xendacentral.com
+
+= Original Authors & Contributors
 * Wen-Tien Chang http://ihower.tw
 * Francisco J. http://github.com/franciscoj
 * Pavel Y. http://github.com/xedin
